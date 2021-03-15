@@ -9,6 +9,8 @@ cd backend
 
 To run frontend:
 
+(You must install Node.js, which you can download here: https://nodejs.org/en/)
+
 cd frontend
 
 npm install
