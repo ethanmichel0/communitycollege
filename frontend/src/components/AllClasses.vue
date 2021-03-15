@@ -25,10 +25,10 @@ export default {
         }
     },
     async created() {
-        const allCoursesRequest = await axios.get("http://localhost:8080/courses/all");
-        this.allCourses = allCoursesRequest.data;
         const currentCoursesRequest = await axios.get(`http://localhost:8080/students/${this.id}/courses`);
         this.currentCourses = currentCoursesRequest.data;
+        const allCoursesRequest = await axios.get("http://localhost:8080/courses/all");
+        this.allCourses = allCoursesRequest.data;
     },
     methods : {
         studentInCourse(courseId) {
