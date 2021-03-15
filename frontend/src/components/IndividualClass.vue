@@ -1,7 +1,7 @@
 <template>
 <div class="card">
     <h3>{{name}}</h3>
-    <p> Enrollment Size: {{enrollmentNumInitially}}</p>
+    <p> Enrollment Size: {{enrollmentNum}}</p>
     <input v-if="option == 'drop'" type="button" value="Drop Course" @click="dropCourse(courseId)">
     <input v-else type="button" value="Add Course" @click="addCourse(courseId)" :disabled="courseAlreadyAdded">
 </div>
@@ -24,8 +24,6 @@ export default {
           courseAlreadyAdded : this.courseAlreadyAddedInitially,
           enrollmentNum : this.enrollmentNumInitially
       }
-  },
-  created() {
   },
   methods : {
       async dropCourse (courseId) {

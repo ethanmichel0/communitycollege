@@ -2,7 +2,7 @@
     <div v-for="course in allCourses" :key="course.id">
         <individual-class
             :name="course.name"
-            :enrollmentNum="course.enrollmentNum"
+            :enrollmentNumInitially="course.enrollmentNum"
             option="add"
             :studentId="id"
             :courseId="course.id"
