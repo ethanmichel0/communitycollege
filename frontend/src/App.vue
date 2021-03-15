@@ -5,6 +5,7 @@
   <h3 v-if="invalidEmailEntered">Your email is invalid!</h3>
   </form>
   <div v-else> <!-- Navigation at top of screen --> 
+    <h4>Welcome back {{studentName}}!</h4>
     <header>
       <nav>
         <ul>
@@ -38,6 +39,7 @@ export default {
       invalidEmailEntered: null,
       enteredStudentEmail: null,
       studentId: null,
+      studentName: null,
       currentComponent: 'CurrentClasses'
     }
   },
@@ -48,6 +50,7 @@ export default {
       if(allEmails.includes(this.enteredStudentEmail)) { 
         const studentWithEmail = this.allStudentInformation.filter(student => student.email == this.enteredStudentEmail);
         this.studentId = studentWithEmail[0].id;
+        this.studentName = studentWithEmail[0].name;
         this.invalidEmailEntered = false;
       } else {
         this.invalidEmailEntered = true;
