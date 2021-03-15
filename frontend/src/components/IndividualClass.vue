@@ -22,7 +22,7 @@ export default {
   data () {
       return {
           courseAlreadyAdded : this.courseAlreadyAddedInitially,
-          enrollmentNum = this.enrollmentNumInitially
+          enrollmentNum : this.enrollmentNumInitially
       }
   },
   created() {
