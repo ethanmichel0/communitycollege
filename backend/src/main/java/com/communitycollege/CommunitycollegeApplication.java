@@ -78,7 +78,7 @@ public class CommunitycollegeApplication implements ApplicationRunner{
 			@Override
 			public void addCorsMappings(CorsRegistry registry) {
 				registry.addMapping("/**")
-						.allowedOrigins("http://localhost:8081")
+						.allowedOrigins("*")
 						.allowedHeaders("*")
 						.allowedMethods("GET", "POST", "PUT", "DELETE");
 			}
