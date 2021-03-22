@@ -2,12 +2,12 @@
     <div v-for="course in allCourses" :key="course.id">
         <individual-class
             :name="course.name"
-            :enrollmentNumInitially="course.enrollmentNum"
+            :enrollmentNum="course.enrollmentNum"
             option="add"
             :studentId="id"
             :courseId="course.id"
-            :courseAlreadyAddedInitially="studentInCourse(course.id)"
-            @courseDropped="dropCourse(course.id)">
+            :courseAlreadyAdded="studentInCourse(course.id)"
+            @addCourse="addCourse(course.id)">
         </individual-class>
     </div>
 </template>
@@ -20,24 +20,29 @@ export default {
     },
     data() {
         return {
-            allCourses: null,
+            allCourses: [],
             currentCourses: []
         }
     },
     async created() {
-        const currentCoursesRequest = await axios.get(`http://localhost:8080/students/${this.id}/courses`);
-        this.currentCourses = currentCoursesRequest.data;
         const allCoursesRequest = await axios.get("http://localhost:8080/courses/all");
         this.allCourses = allCoursesRequest.data;
+        const currentCoursesRequest = await axios.get(`http://localhost:8080/students/${this.id}/courses`);
+        this.currentCourses = currentCoursesRequest.data;
     },
     methods : {
         studentInCourse(courseId) {
-            if(this.currentCourses === null) {
-                return true; // this is a bug
+            const alreadyInCourse = this.currentCourses.filter(course => course.id == courseId).length !== 0;
+            return alreadyInCourse;
+        },
+        async addCourse(courseId) {
+            const addCourseRequest = await axios.post(`http://localhost:8080/students/${this.id}/courses/${courseId}`);
+            if(addCourseRequest.status == 200) {
+                const course = this.allCourses.filter(course => course.id == courseId)[0];
+                course.enrollmentNum ++;
+                this.currentCourses.push(course);
             }
-            const alreadyInCoures = this.currentCourses.filter(course => course.id == courseId).length !== 0;
-            return alreadyInCoures;
-        }
+        },
     }
 }
 </script>

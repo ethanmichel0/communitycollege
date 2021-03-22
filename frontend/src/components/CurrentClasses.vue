@@ -7,7 +7,7 @@
     :studentId="id"
     :courseId="course.id"
     :courseAlreadyAddedInitially="true"
-    @courseDropped="dropCourse(course.id)">
+    @dropCourse="dropCourse(course.id)">
   </individual-class>
 </div>
 <h3 v-if="courses !== null && courses.length === 0">
@@ -32,9 +32,14 @@ export default {
     this.courses = studentsRequest.data;
   },
   methods : {
-      dropCourse (courseId) {
-          this.courses = this.courses.filter((course) => course.id != courseId);
-      }
+      async dropCourse (courseId) {
+          if(confirm("Are you sure you want to drop this course?")) {
+              const deleteCourseRequest = await axios.delete(`http://localhost:8080/students/${this.id}/courses/${courseId}`);
+              if (deleteCourseRequest.status == 200) {
+                this.courses = this.courses.filter((course) => course.id != courseId);
+              } 
+          }
+      },
   }
 }
 </script>
