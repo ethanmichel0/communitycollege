@@ -1,9 +1,3 @@
-(Update for evaluators):
-
-I added new commits yesterday because I wanted to fix some of my component communication. This was just for fun and learning on my own (I wanted to try to limit myself to the time constraints when I submitted this project before the deadline). If you would like to see the work I submitted before the deadline, please see this commit: 0531aca4cc1e24c9fa97acc9c7a56280d13ab1e4. Also please note that this commit and my most recent one behave identically apart from a console warning (which doesn't actually impact any behavior), the only difference is the organization of logic among components. 
-
-
-
 # communitycollegetest
 
 To run backend: 
