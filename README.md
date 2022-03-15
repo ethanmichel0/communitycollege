@@ -1,4 +1,4 @@
-# communitycollegetest
+# Community College
 
 To run backend: 
 
